@@ -105,8 +105,18 @@ const Seccion = () => {
       console.log("pasa");
       navigate(`/admin`);
       return;
+    } else if (
+      user.name &&
+      user.name !== "admin" &&
+      user.name !== "Admin" &&
+      user.password
+    ) {
+      navigate(`/${user.name}`);
     } else {
       setError("La contraeña de administrador no coincide");
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
       setUSERLogin(user);
     }
   };
