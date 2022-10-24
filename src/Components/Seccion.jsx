@@ -97,12 +97,16 @@ const Seccion = () => {
       name: e.target.name.value,
       password: e.target.password.value,
     };
-
-    if (user.name === "admin" && user.password === "1234") {
+    console.log(user.password === "1234");
+    if (
+      (user.name === "Admin" || user.name === "admin") &&
+      user.password === "1234"
+    ) {
+      console.log("pasa");
       navigate(`/admin`);
       return;
     } else {
-      setError("usted no es el admin mofoka");
+      setError("La contraeña de administrador no coincide");
       setUSERLogin(user);
     }
   };
@@ -117,9 +121,6 @@ const Seccion = () => {
         <input type="password" name="password" id="" placeholder="Password" />
         <input className="Envio" type="submit" value="Ingresar" />
         {error && <p className="error">{error}</p>}
-        {USERLogin && USERLogin.name !== "admin" && (
-          <Navigate to={`/${USERLogin.name}`} />
-        )}
       </form>
     </ContForm>
   );
